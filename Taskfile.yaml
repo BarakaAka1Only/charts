@@ -1,0 +1,17 @@
+version: '3'
+
+tasks:
+  lint-all-charts:
+    vars:
+      CHARTS:
+        sh: ls | xargs
+    cmds:
+      - helm lint {{ .CHARTS }}
+    dir: charts
+    silent: true
+
+  commit:
+  - git add .
+  - git commit -m "update"
+  - git push origin main
+

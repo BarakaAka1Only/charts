@@ -1,0 +1,66 @@
+# Override this with real Pangoling config!
+config:
+  a: 1
+  b: 2
+
+pangolin:
+  image:
+    registry: fosrl
+    repository: pangolin
+    tag: 1.14.1
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: 200m
+      memory: 384Mi
+  ports:
+    - name: external
+      containerPort: 3000
+      # nodePort: 30000  # Optional: NodePort for external access (30000-32767)
+    - name: internal
+      containerPort: 3001
+      # nodePort: 30001  # Optional: NodePort for internal access (30000-32767)
+    - name: next
+      containerPort: 3002
+      # nodePort: 30002  # Optional: NodePort for next service (30000-32767)
+
+  # Probe configurations
+  startupProbe:
+    enabled: true
+    httpGet:
+      path: /api/v1/
+      port: 3001
+    initialDelaySeconds: 0
+    periodSeconds: 1
+    timeoutSeconds: 3
+    successThreshold: 1
+    failureThreshold: 15  # 15 retries × 1s = 15s total startup time
+
+  livenessProbe:
+    enabled: true
+    httpGet:
+      path: /api/v1/
+      port: 3001
+    initialDelaySeconds: 0
+    periodSeconds: 10
+    timeoutSeconds: 3
+    successThreshold: 1
+    failureThreshold: 3
+
+  readinessProbe:
+    enabled: true
+    httpGet:
+      path: /api/v1/
+      port: 3001
+    initialDelaySeconds: 0
+    periodSeconds: 3
+    timeoutSeconds: 3
+    successThreshold: 1
+    failureThreshold: 3
+
+persistence:
+  # storageClass:
+  size: 1Gi
+
