@@ -1,13 +1,11 @@
 # Override this with real Pangoling config!
 config:
-  a: 1
-  b: 2
 
 pangolin:
   image:
     registry: fosrl
     repository: pangolin
-    tag: 1.14.1
+    tag: latest
   resources:
     requests:
       cpu: 100m
