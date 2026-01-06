@@ -1,6 +1,6 @@
 # Charts
 
-[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/baraka&style=for-the-badge)](https://artifacthub.io/packages/search?repo=baraka)
+[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/bdcode)](https://artifacthub.io/packages/search?repo=bdcode)
 
 ## Github Actions
 
