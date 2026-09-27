@@ -29,6 +29,7 @@ app.kubernetes.io/name: {{ include "common.names.name" . }}
 helm.sh/chart: {{ include "common.names.chart" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
+app: postgres
 {{- with .Chart.AppVersion }}
 app.kubernetes.io/version: {{ include "common.labels.value" . | quote }}
 {{- end -}}
@@ -50,5 +51,6 @@ overwrote them on metadata.labels fields.
 {{- else -}}
 app.kubernetes.io/name: {{ include "common.names.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
+app: postgres
 {{- end -}}
 {{- end -}}
